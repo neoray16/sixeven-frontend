@@ -269,7 +269,7 @@
                     <button onclick="closeTermsModal()" aria-label="סגור" class="text-slate-400 hover:text-white px-2"><i class="fa-solid fa-xmark"></i></button>
                 </div>
                 <div class="p-4 overflow-y-auto text-xs leading-relaxed text-slate-300">
-<p class="mb-1.5">Oct 30, 2026 · @ORI</p>
+<p class="mb-1.5">Nov 5, 2026 · @ORI</p>
 <h4 class="text-white font-bold text-sm mt-4 mb-1">1. מבוא והגדרות</h4>
 <p class="mb-1.5">1.1 ברוכים הבאים ל-siXeven (&quot;האפליקציה&quot; או &quot;השירות&quot;). האפליקציה מאפשרת לתלמידים להזמין מזון ומשקאות מהקפיטריה של בית הספר. האפליקציה בבעלות ובהפעלה של אורי מורן (&quot;בעל האפליקציה&quot;, &quot;אנחנו&quot;).</p>
 <p class="mb-1.5">1.2 השימוש באפליקציה, לרבות הרשמה, גלישה או ביצוע הזמנה, מהווה הסכמה לתנאים אלה ולמדיניות הפרטיות. מי שאינו מסכים לתנאים אינו רשאי להשתמש באפליקציה.</p>
@@ -299,6 +299,7 @@
 <p class="mb-1.5">4.3 התשלום עבור המוצרים משולם ישירות לקפיטריה. בעל האפליקציה אינו מקבל את כסף ההזמנה, אינו מוציא קבלות עליו, ואינו אחראי להחזרתו. קבלה או חשבונית תימסר על ידי הקפיטריה.</p>
 <p class="mb-1.5">4.4 ביטול הזמנה והחזר כספי ייעשו לפי מדיניות הקפיטריה והדין. מאחר שמדובר במזון שמוכן לפי הזמנה, ייתכן שלא ניתן יהיה לבטל הזמנה אחרי שההכנה החלה.</p>
 <p class="mb-1.5">4.5 משתמש שלא יאסוף הזמנה שאושרה, הקפיטריה רשאית לחייבו במחירה, ובעל האפליקציה רשאי להגביל את חשבונו במקרה של הישנות.</p>
+<p class="mb-1.5">4.6 ארנק ויתרה. היתרה בארנק באפליקציה משקפת סכום שהמשתמש העביר לקפיטריה, והיא נטענת, מתעדכנת ומנוהלת על ידי בעל הקפיטריה. האחריות לטעינת הארנק, לדיוק היתרה, לתיקון טעויות ולכל החזר כספי, לרבות החזר יתרה שלא נוצלה והחזר בגין ביטול הזמנה, חלה על בעל הקפיטריה בלבד, והחזרים אלה יבוצעו ויעודכנו על ידו. בעל האפליקציה אינו מחזיק כספי משתמשים, אינו צד לטעינת הארנק ואינו אחראי להחזרים. פניות בנושא יתרה או החזר יופנו לבעל הקפיטריה.</p>
 <h4 class="text-white font-bold text-sm mt-4 mb-1">5. שימוש מותר ושימוש אסור</h4>
 <p class="mb-1.5">5.1 המשתמש רשאי להשתמש באפליקציה לשימוש אישי וחוקי בלבד. אסור למשתמש:</p>
 <ul class="list-disc pr-5 space-y-0.5">
@@ -356,6 +357,37 @@
             </div>
         </div>
 
+        <!-- Cancel top-up modal -->
+        <div id="cancel-topup-modal" class="hidden fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-4">
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-sm w-full shadow-2xl p-5 space-y-3">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-rose-950/60 text-rose-300 flex items-center justify-center shrink-0"><i class="fa-solid fa-rotate-left"></i></div>
+                    <h3 class="font-bold text-white text-base">ביטול טעינה</h3>
+                </div>
+                <p id="cancel-topup-text" class="text-sm text-slate-300 leading-relaxed"></p>
+                <input id="cancel-topup-password" type="password" autocomplete="off" placeholder="סיסמת טעינה" onkeydown="if(event.key==='Enter')confirmCancelTopup()" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-xs text-white focus:outline-none focus:border-indigo-500">
+                <p id="cancel-topup-error" class="text-rose-400 text-xs text-center min-h-4"></p>
+                <div class="grid grid-cols-2 gap-2">
+                    <button onclick="closeCancelTopup()" class="border border-slate-700 hover:bg-slate-800 text-slate-200 font-bold py-2.5 rounded-xl text-sm">סגור</button>
+                    <button id="cancel-topup-btn" onclick="confirmCancelTopup()" class="bg-rose-600 hover:bg-rose-500 text-white font-bold py-2.5 rounded-xl text-sm">בטל טעינה</button>
+                </div>
+            </div>
+        </div>
+        <!-- Reset wallet modal -->
+        <div id="reset-wallet-modal" class="hidden fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-4">
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-sm w-full shadow-2xl p-5 space-y-3">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-rose-950/60 text-rose-300 flex items-center justify-center shrink-0"><i class="fa-solid fa-eraser"></i></div>
+                    <h3 class="font-bold text-white text-base">איפוס ארנק</h3>
+                </div>
+                <p id="reset-wallet-text" class="text-sm text-slate-300 leading-relaxed"></p>
+                <p id="reset-wallet-error" class="text-rose-400 text-xs text-center min-h-4"></p>
+                <div class="grid grid-cols-2 gap-2">
+                    <button onclick="closeResetWallet()" class="border border-slate-700 hover:bg-slate-800 text-slate-200 font-bold py-2.5 rounded-xl text-sm">ביטול</button>
+                    <button id="reset-wallet-btn" onclick="confirmResetWallet()" class="bg-rose-600 hover:bg-rose-500 text-white font-bold py-2.5 rounded-xl text-sm">אפס ארנק</button>
+                </div>
+            </div>
+        </div>
         <!-- Order confirmation modal -->
         <div id="confirm-modal" class="hidden fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-4">
             <div class="bg-slate-900 border border-emerald-800/50 p-6 rounded-2xl max-w-xs w-full shadow-2xl text-center">
@@ -371,6 +403,7 @@
             <header class="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 p-4 sticky top-0 z-30 border-b border-indigo-900/40 shadow-xl" style="padding-top: max(1rem, env(safe-area-inset-top, 0px));">
                 <div class="flex items-center justify-between mb-3">
                     <h1 class="text-lg font-black text-white">היי, <span id="staff-header-name" class="text-indigo-300"></span></h1>
+                    <button id="staff-sound-btn" onclick="toggleStaffSound()" class="px-2 text-emerald-400"><i class="fa-solid fa-bell"></i></button>
                     <button onclick="openScheduleModal()" aria-label="שעות פעילות" class="text-slate-400 hover:text-white px-2"><i class="fa-solid fa-clock"></i></button>
                     <button id="staff-open-toggle" onclick="toggleCafeteriaOpen()" class="text-xs font-bold px-3 py-1.5 rounded-full border border-slate-700 text-slate-400">...</button>
                     <button onclick="logout()" aria-label="התנתק" class="text-slate-400 hover:text-white px-2"><i class="fa-solid fa-arrow-right-from-bracket"></i></button>
@@ -431,6 +464,11 @@
                 showToast('פג תוקף ההתחברות, יש להיכנס שוב', 'error');
                 throw new Error('פג תוקף ההתחברות');
             }
+            if (data && data.code === 'ACCOUNT_BLOCKED') {
+                if (auth) { logout(); }
+                showToast('החשבון נחסם. לפרטים פנה לבעל האפליקציה או לקפיטריה', 'error');
+                throw new Error('החשבון נחסם');
+            }
             if (!res.ok) {
                 let msg = (data && data.message) || (data && data.error) || `שגיאת שרת (${res.status})`;
                 if (res.status === 429 && !/wait \d+ seconds|codes requested|wrong attempts/i.test(msg)) msg = 'יותר מדי ניסיונות או בקשות - נסה שוב בעוד כמה דקות';
@@ -458,10 +496,9 @@
             setTimeout(() => { toast.classList.remove('show'); setTimeout(() => toast.remove(), 300); }, 3500);
         }
 
+        // מנקה גם גרשיים, כדי שאפשר יהיה להשתמש בזה בתוך ערכי attribute (alt, value, data-*) בלי פרצת XSS
         function escapeHtml(str) {
-            const div = document.createElement('div');
-            div.textContent = str == null ? '' : String(str);
-            return div.innerHTML;
+            return str == null ? '' : String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
         }
 
         function formatMoney(n) { return Number(n || 0).toFixed(2); }
@@ -670,6 +707,7 @@
         let resendTimer = null;
 
         const SERVER_MSG_HE = {
+            'This account has been blocked': 'החשבון נחסם. לפרטים פנה לבעל האפליקציה או לקפיטריה',
             'No student found with this name and phone': 'לא נמצא תלמיד עם השם והטלפון האלה. אם עוד לא נרשמת - עבור ללשונית "הרשמה"',
             'Wrong code': 'הקוד שגוי',
             'Code expired. Please request a new one': 'תוקף הקוד פג - בקש קוד חדש',
@@ -695,7 +733,7 @@
             backToStudentDetails();
         }
 
-        const TERMS_VERSION = '2026-10-30';
+        const TERMS_VERSION = '2026-11-05';
         function openTermsModal(ev) { if (ev) ev.preventDefault(); document.getElementById('terms-modal').classList.remove('hidden'); }
         function closeTermsModal() { document.getElementById('terms-modal').classList.add('hidden'); }
 
@@ -1228,6 +1266,7 @@
             document.getElementById('staff-header-name').innerText = auth.profile.name;
             setStaffTab('orders');
             loadStaffCafeteriaStatus();
+            startOrderAlerts();
             if (!window.staffStatusTimer) window.staffStatusTimer = setInterval(() => { if (auth && auth.type === 'staff') loadStaffCafeteriaStatus(); }, 60000); // מעדכן את הכפתור כשהפתיחה אוטומטית
         }
 
@@ -1347,26 +1386,126 @@
         let staffProducts = [];
 
         // ---------- טעינת ארנק ע"י הקפיטריה ----------
-        let topupStudentName = null, topupLookupTimer = null;
+        let topupStudentName = null, topupStudentBalance = 0, topupLookupTimer = null;
         function topupLookup() {
             clearTimeout(topupLookupTimer);
             const phone = normalizePhone(document.getElementById('topup-phone').value);
             const label = document.getElementById('topup-student');
             const btn = document.getElementById('topup-btn');
             topupStudentName = null; btn.disabled = true;
+            { const rb = document.getElementById('reset-wallet-open'); if (rb) rb.disabled = true; }
             if (!/^05\d{8}$/.test(phone)) { label.className = 'text-xs min-h-4 text-slate-500'; label.innerText = ''; return; }
             label.className = 'text-xs min-h-4 text-slate-500'; label.innerText = 'מחפש...';
             topupLookupTimer = setTimeout(async () => {
                 try {
                     const r = await api('/cafeteria/students/lookup?phone=' + phone);
                     if (normalizePhone(document.getElementById('topup-phone').value) !== phone) return;
-                    topupStudentName = r.name; btn.disabled = false;
-                    label.className = 'text-xs min-h-4 text-emerald-400 font-bold'; label.innerText = 'תלמיד: ' + r.name;
+                    topupStudentName = r.name; topupStudentBalance = r.balance || 0; btn.disabled = false;
+                    { const rb = document.getElementById('reset-wallet-open'); if (rb) rb.disabled = false; }
+                    label.className = 'text-xs min-h-4 text-emerald-400 font-bold'; label.innerText = 'תלמיד: ' + r.name + ' · יתרה ₪' + formatMoney(r.balance);
                 } catch (e) {
                     label.className = 'text-xs min-h-4 text-rose-400'; label.innerText = 'לא נמצא תלמיד עם הטלפון הזה בקפיטריה שלך';
                 }
             }, 300);
         }
+        // POST /api/cafeteria/wallet-reset - איפוס הארנק של תלמיד ל-0 (עם סיסמת טעינה)
+        function openResetWallet() {
+            const msg = document.getElementById('topup-msg');
+            msg.className = 'text-xs min-h-4 text-center text-rose-400'; msg.innerText = '';
+            if (!topupStudentName) { msg.innerText = 'נא להזין טלפון של תלמיד קיים'; return; }
+            if (!document.getElementById('topup-password').value) { msg.innerText = 'נא להזין סיסמת טעינה'; return; }
+            document.getElementById('reset-wallet-text').innerText = `לאפס את הארנק של ${topupStudentName}? היתרה הנוכחית (₪${formatMoney(topupStudentBalance)}) תימחק והיתרה תהפוך ל-₪0.00. אי אפשר לשחזר.`;
+            document.getElementById('reset-wallet-error').innerText = '';
+            document.getElementById('reset-wallet-modal').classList.remove('hidden');
+        }
+        function closeResetWallet() { document.getElementById('reset-wallet-modal').classList.add('hidden'); }
+        async function confirmResetWallet() {
+            const err = document.getElementById('reset-wallet-error');
+            const btn = document.getElementById('reset-wallet-btn');
+            const phone = normalizePhone(document.getElementById('topup-phone').value);
+            const topupPassword = document.getElementById('topup-password').value;
+            err.innerText = ''; btn.disabled = true;
+            try {
+                const r = await api('/cafeteria/wallet-reset', { method: 'POST', body: JSON.stringify({ phone, topupPassword }) });
+                closeResetWallet();
+                const msg = document.getElementById('topup-msg');
+                msg.className = 'text-xs min-h-4 text-center text-emerald-400 font-bold';
+                msg.innerText = `הארנק של ${r.student_name} אופס (נמחקו ₪${formatMoney(r.removed)})`;
+                document.getElementById('topup-phone').value = ''; document.getElementById('topup-amount').value = ''; document.getElementById('topup-password').value = '';
+                document.getElementById('topup-student').innerText = ''; topupStudentName = null; topupStudentBalance = 0;
+                document.getElementById('topup-btn').disabled = true;
+                const rb = document.getElementById('reset-wallet-open'); if (rb) rb.disabled = true;
+            } catch (e) {
+                const code = e.data && e.data.code;
+                err.innerText = code === 'WRONG_TOPUP_PASSWORD' ? 'סיסמת הטעינה שגויה'
+                    : code === 'ALREADY_ZERO' ? 'הארנק כבר מאופס (₪0)'
+                    : code === 'TOPUP_PASSWORD_NOT_SET' ? 'לא הוגדרה סיסמת טעינה לקפיטריה. פנה לבעל האפליקציה'
+                    : /Too many/i.test(e.message) ? 'יותר מדי ניסיונות שגויים. נסה שוב בעוד כמה דקות'
+                    : (e.message || 'האיפוס נכשל');
+            } finally { btn.disabled = false; }
+        }
+
+        // POST /api/cafeteria/topup/:id/cancel - הסכום יורד מהארנק של התלמיד (עם סיסמת טעינה)
+        let topupHistoryCache = [], cancellingTopupId = null;
+        function openCancelTopup(id) {
+            const t = topupHistoryCache.find(x => String(x.id) === String(id)); if (!t) return;
+            cancellingTopupId = t.id;
+            document.getElementById('cancel-topup-text').innerText = `לבטל את הטעינה של ₪${formatMoney(t.amount)} ל${t.student_name}? הסכום יירד מהארנק שלו. אם הוא כבר השתמש בכסף, אי אפשר לבטל.`;
+            document.getElementById('cancel-topup-password').value = '';
+            document.getElementById('cancel-topup-error').innerText = '';
+            document.getElementById('cancel-topup-modal').classList.remove('hidden');
+            setTimeout(() => document.getElementById('cancel-topup-password').focus(), 50);
+        }
+        function closeCancelTopup() { document.getElementById('cancel-topup-modal').classList.add('hidden'); cancellingTopupId = null; document.getElementById('cancel-topup-password').value = ''; }
+        async function confirmCancelTopup() {
+            const err = document.getElementById('cancel-topup-error');
+            const btn = document.getElementById('cancel-topup-btn');
+            const topupPassword = document.getElementById('cancel-topup-password').value;
+            err.innerText = '';
+            if (!topupPassword) { err.innerText = 'נא להזין סיסמת טעינה'; return; }
+            btn.disabled = true;
+            try {
+                const r = await api(`/cafeteria/topup/${cancellingTopupId}/cancel`, { method: 'POST', body: JSON.stringify({ topupPassword }) });
+                closeCancelTopup();
+                showToast(`הטעינה בוטלה (₪${formatMoney(r.removed)} ירדו מהארנק)`);
+                loadTopupHistory();
+            } catch (e) {
+                const code = e.data && e.data.code;
+                err.innerText = code === 'WRONG_TOPUP_PASSWORD' ? 'סיסמת הטעינה שגויה'
+                    : code === 'BALANCE_TOO_LOW' ? `אי אפשר לבטל: התלמיד כבר השתמש בכסף (יתרה נוכחית ₪${formatMoney(e.data.balance)})`
+                    : code === 'ALREADY_CANCELLED' ? 'הטעינה כבר בוטלה'
+                    : code === 'TOPUP_PASSWORD_NOT_SET' ? 'לא הוגדרה סיסמת טעינה לקפיטריה. פנה לבעל האפליקציה'
+                    : /Too many/i.test(e.message) ? 'יותר מדי ניסיונות שגויים. נסה שוב בעוד כמה דקות'
+                    : (e.message || 'הביטול נכשל');
+                if (code === 'ALREADY_CANCELLED') loadTopupHistory();
+            } finally { btn.disabled = false; }
+        }
+
+        // GET /api/topups?period= - כל הטעינות של הקפיטריה
+        async function loadTopupHistory() {
+            const box = document.getElementById('topup-history');
+            if (!box) return;
+            const sel = document.getElementById('topup-period');
+            try {
+                const r = await api('/topups?period=' + (sel ? sel.value : '30d'));
+                if (!document.getElementById('topup-history')) return;
+                topupHistoryCache = r.topups;
+                const fmt = (d) => new Date(d).toLocaleString('he-IL', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+                box.innerHTML = `<div class="bg-slate-900 border border-slate-800 rounded-xl p-3 mb-2 flex items-center justify-between text-xs"><span class="text-slate-400">${r.count} טעינות</span><span class="font-black text-emerald-400 text-sm">סה"כ ₪${formatMoney(r.total)}</span></div>`
+                    + (r.topups.length === 0 ? '<p class="text-center text-xs text-slate-500 py-6">אין טעינות בתקופה הזו</p>'
+                        : '<div class="space-y-2">' + r.topups.map(t => `
+                        <div class="bg-slate-900 border border-slate-800 rounded-xl p-3 flex items-center justify-between gap-2 ${t.cancelled_at ? 'opacity-60' : ''}">
+                            <div class="min-w-0"><p class="text-xs font-bold text-white">${escapeHtml(t.student_name)}</p>
+                            <p class="text-[11px] text-slate-500"><span dir="ltr">${escapeHtml(t.student_phone)}</span> · ${fmt(t.created_at)}</p>
+                            ${t.cancelled_at ? `<p class="text-[11px] text-rose-300">בוטלה ב-${fmt(t.cancelled_at)}</p>` : ''}</div>
+                            <div class="shrink-0 flex flex-col items-end gap-1.5">
+                                <span class="text-sm font-black ${t.cancelled_at ? 'text-slate-500 line-through' : 'text-emerald-400'}">+₪${formatMoney(t.amount)}</span>
+                                ${t.cancelled_at ? '' : `<button onclick="openCancelTopup('${t.id}')" class="text-[11px] border border-rose-800 text-rose-300 hover:bg-rose-950 rounded-lg px-2.5 py-1"><i class="fa-solid fa-rotate-left ml-1"></i>בטל</button>`}
+                            </div>
+                        </div>`).join('') + '</div>');
+            } catch (e) { box.innerHTML = `<p class="text-center text-xs text-rose-400 py-4">${escapeHtml(e.message)}</p>`; }
+        }
+
         async function submitTopup() {
             const phone = normalizePhone(document.getElementById('topup-phone').value);
             const amount = Number(document.getElementById('topup-amount').value);
@@ -1374,15 +1513,27 @@
             msg.className = 'text-xs min-h-4 text-center text-rose-400'; msg.innerText = '';
             if (!topupStudentName) { msg.innerText = 'נא להזין טלפון של תלמיד קיים'; return; }
             if (!(amount > 0)) { msg.innerText = 'נא להזין סכום גדול מאפס'; return; }
+            if (amount > 360) { msg.innerText = 'אפשר להטעין עד ₪360 בכל טעינה'; return; }
+            const topupPassword = document.getElementById('topup-password').value;
+            if (!topupPassword) { msg.innerText = 'נא להזין סיסמת טעינה'; return; }
             if (!confirm(`לטעון ₪${formatMoney(amount)} ל${topupStudentName}?`)) return;
             btn.disabled = true;
             try {
-                const r = await api('/cafeteria/topup', { method: 'POST', body: JSON.stringify({ phone, amount }) });
+                const r = await api('/cafeteria/topup', { method: 'POST', body: JSON.stringify({ phone, amount, topupPassword }) });
                 msg.className = 'text-xs min-h-4 text-center text-emerald-400 font-bold';
                 msg.innerText = `נטענו ₪${formatMoney(r.added)} ל${r.student_name}. יתרה חדשה: ₪${formatMoney(r.newBalance)}`;
-                document.getElementById('topup-phone').value = ''; document.getElementById('topup-amount').value = '';
+                document.getElementById('topup-phone').value = ''; document.getElementById('topup-amount').value = ''; document.getElementById('topup-password').value = '';
                 document.getElementById('topup-student').innerText = ''; topupStudentName = null;
-            } catch (e) { msg.innerText = e.message || 'הטעינה נכשלה'; btn.disabled = false; }
+                loadTopupHistory();
+            } catch (e) {
+                const code = e.data && e.data.code;
+                msg.innerText = code === 'TOPUP_TOO_LARGE' ? 'אפשר להטעין עד ₪360 בכל טעינה'
+                    : code === 'WRONG_TOPUP_PASSWORD' ? 'סיסמת הטעינה שגויה'
+                    : code === 'TOPUP_PASSWORD_NOT_SET' ? 'לא הוגדרה סיסמת טעינה לקפיטריה. פנה לבעל האפליקציה'
+                    : /Too many/i.test(e.message) ? 'יותר מדי ניסיונות שגויים. נסה שוב בעוד כמה דקות'
+                    : (e.message || 'הטעינה נכשלה');
+                btn.disabled = false;
+            }
         }
 
         function renderStaffContent() {
@@ -1430,10 +1581,22 @@
                         <h3 class="text-sm font-bold text-white">טעינת ארנק לתלמיד</h3>
                         <input id="topup-phone" type="tel" inputmode="tel" dir="ltr" maxlength="12" placeholder="מספר טלפון של התלמיד" oninput="topupLookup()" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-xs text-white text-left focus:outline-none focus:border-indigo-500">
                         <p id="topup-student" class="text-xs min-h-4 text-slate-500"></p>
-                        <input id="topup-amount" type="number" inputmode="decimal" min="1" step="any" placeholder="סכום לטעינה (₪)" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-xs text-white focus:outline-none focus:border-indigo-500">
+                        <input id="topup-amount" type="number" inputmode="decimal" min="1" max="360" step="any" placeholder="סכום לטעינה (עד ₪360)" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-xs text-white focus:outline-none focus:border-indigo-500">
+                        <input id="topup-password" type="password" autocomplete="off" placeholder="סיסמת טעינה (מבעל האפליקציה)" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-xs text-white focus:outline-none focus:border-indigo-500">
                         <p id="topup-msg" class="text-xs min-h-4 text-center"></p>
                         <button id="topup-btn" onclick="submitTopup()" disabled class="w-full bg-indigo-600 disabled:opacity-40 text-white font-bold py-2.5 rounded-xl text-sm">טען ארנק</button>
+                        <button id="reset-wallet-open" onclick="openResetWallet()" disabled class="w-full border border-rose-800 text-rose-300 hover:bg-rose-950 disabled:opacity-40 font-bold py-2 rounded-xl text-xs"><i class="fa-solid fa-eraser ml-1"></i>אפס ארנק (יתרה ל-₪0)</button>
+                    </div>
+                    <div class="mt-5">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="text-sm font-bold text-white">היסטוריית טעינות</h3>
+                            <select id="topup-period" onchange="loadTopupHistory()" class="bg-slate-900 border border-slate-800 rounded-lg px-2 py-1 text-xs text-slate-200">
+                                <option value="today">היום</option><option value="7d">7 ימים</option><option value="30d" selected>30 יום</option><option value="all">הכל</option>
+                            </select>
+                        </div>
+                        <div id="topup-history"><div class="text-center py-6 text-slate-500 text-xs"><span class="spinner"></span></div></div>
                     </div>`;
+                loadTopupHistory();
             } else {
                 main.innerHTML = `
                     <div class="flex gap-1.5 bg-slate-900 p-1 rounded-xl border border-slate-800 text-xs mb-3">
@@ -1447,6 +1610,76 @@
         }
 
         // ---------- הזמנות הקפטריה: "בהכנה" (pending) / "טופל" (מוכנה או בוטלה) ----------
+        // ---------- צליל התראה להזמנה חדשה ----------
+        // בודק הזמנות כל 15 שניות כל עוד הקפיטריה מחוברת (בכל לשונית), ומצפצף כשמגיעה הזמנה חדשה.
+        // הדפדפן מתיר צליל רק אחרי שהייתה לחיצה במסך, ולכן הכניסה עצמה "פותחת" את הצליל.
+        let staffSoundOn = true;
+        try { if (localStorage.getItem('sixeven_staff_sound') === 'off') staffSoundOn = false; } catch (e) {}
+        let audioCtx = null, knownOrderIds = new Set(), knownOrdersInit = false, staffAlertTimer = null;
+        function getAudioCtx() {
+            const AC = window.AudioContext || window.webkitAudioContext;
+            if (!AC) return null;
+            if (!audioCtx) audioCtx = new AC();
+            return audioCtx;
+        }
+        document.addEventListener('pointerdown', () => { const c = getAudioCtx(); if (c && c.state === 'suspended') c.resume(); }, { passive: true });
+        async function playBeep() {
+            const c = getAudioCtx();
+            if (!c) return false;
+            if (c.state !== 'running') { try { await c.resume(); } catch (e) {} }
+            if (c.state !== 'running') return false;
+            const now = c.currentTime;
+            [[880, 0], [1175, 0.22], [880, 0.65], [1175, 0.87]].forEach(([freq, t]) => {
+                const o = c.createOscillator(), g = c.createGain();
+                o.type = 'sine'; o.frequency.value = freq;
+                g.gain.setValueAtTime(0.0001, now + t);
+                g.gain.exponentialRampToValueAtTime(0.4, now + t + 0.02);
+                g.gain.exponentialRampToValueAtTime(0.0001, now + t + 0.2);
+                o.connect(g); g.connect(c.destination);
+                o.start(now + t); o.stop(now + t + 0.22);
+            });
+            return true;
+        }
+        function renderStaffSoundBtn() {
+            const b = document.getElementById('staff-sound-btn');
+            if (!b) return;
+            b.innerHTML = staffSoundOn ? '<i class="fa-solid fa-bell"></i>' : '<i class="fa-solid fa-bell-slash"></i>';
+            b.className = 'px-2 ' + (staffSoundOn ? 'text-emerald-400 hover:text-emerald-300' : 'text-slate-500 hover:text-white');
+            b.setAttribute('aria-label', staffSoundOn ? 'צליל התראה פעיל - לחץ לכיבוי' : 'צליל התראה כבוי - לחץ להפעלה');
+        }
+        function toggleStaffSound() {
+            staffSoundOn = !staffSoundOn;
+            try { localStorage.setItem('sixeven_staff_sound', staffSoundOn ? 'on' : 'off'); } catch (e) {}
+            renderStaffSoundBtn();
+            if (staffSoundOn) playBeep().then(ok => showToast(ok ? 'צליל התראה פעיל' : 'לחץ שוב על המסך כדי להפעיל צליל', ok ? 'success' : 'error'));
+            else showToast('צליל התראה כבוי');
+        }
+        function notifyIfNewOrders() {
+            const pendingIds = staffOrders.filter(o => o.status === 'pending').map(o => String(o.id));
+            if (!knownOrdersInit) { pendingIds.forEach(id => knownOrderIds.add(id)); knownOrdersInit = true; return; } // בטעינה הראשונה לא מצפצפים על הזמנות קיימות
+            const fresh = pendingIds.filter(id => !knownOrderIds.has(id));
+            pendingIds.forEach(id => knownOrderIds.add(id));
+            if (fresh.length === 0) return;
+            showToast(fresh.length > 1 ? `התקבלו ${fresh.length} הזמנות חדשות!` : 'התקבלה הזמנה חדשה!');
+            if (staffSoundOn) playBeep().then(ok => { if (!ok) showToast('לחץ על המסך כדי להפעיל צליל התראות', 'error'); });
+        }
+        async function pollOrdersForAlert() {
+            if (!auth || auth.type !== 'staff') { clearInterval(staffAlertTimer); staffAlertTimer = null; return; }
+            try {
+                const r = await api('/orders');
+                staffOrders = r.orders || [];
+                notifyIfNewOrders();
+                if (staffTab === 'orders') renderStaffOrders();
+            } catch (e) { /* ננסה שוב בסיבוב הבא */ }
+        }
+        function startOrderAlerts() {
+            knownOrderIds = new Set(); knownOrdersInit = false;
+            renderStaffSoundBtn();
+            pollOrdersForAlert();
+            clearInterval(staffAlertTimer);
+            staffAlertTimer = setInterval(pollOrdersForAlert, 15000);
+        }
+
         let staffOrders = [];
         let ordersView = 'pending';
         let staffOrdersTimer = null;
@@ -1458,15 +1691,11 @@
             try {
                 const result = await api('/orders'); // הקפטריה נקבעת בשרת לפי ה-token
                 staffOrders = result.orders || [];
+                notifyIfNewOrders();
                 renderStaffOrders();
             } catch (e) {
                 if (list) list.innerHTML = `<p class="text-center text-xs text-rose-400 py-6">${escapeHtml(e.message)}</p>`;
             }
-            clearInterval(staffOrdersTimer);
-            staffOrdersTimer = setInterval(() => {
-                if (!auth || auth.type !== 'staff' || staffTab !== 'orders') { clearInterval(staffOrdersTimer); return; }
-                loadStaffOrders();
-            }, 20000);
         }
 
         function renderStaffOrders() {
